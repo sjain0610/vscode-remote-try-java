@@ -1,3 +1,5 @@
+package com.tech.chessboard.Model;
+
 public abstract class ChessPiece {
     protected String position;
 
