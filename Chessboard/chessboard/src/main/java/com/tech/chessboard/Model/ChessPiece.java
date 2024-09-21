@@ -1,7 +1,7 @@
 package com.tech.chessboard.Model;
 
 public abstract class ChessPiece {
-    protected String position;
+    public String position;
 
     public ChessPiece(String position) {
         this.position = position;

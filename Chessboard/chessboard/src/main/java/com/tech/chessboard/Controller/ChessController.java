@@ -1,8 +1,6 @@
 package com.tech.chessboard.Controller;
 
-import com.tech.chessboard.Chessboard;
 import com.tech.chessboard.Service.ChessService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,17 +9,15 @@ import java.util.List;
 @RequestMapping("/chess")
 public class ChessController{
 
-    @Autowired
-    public ChessService chessService;
+    ChessService chessService=new ChessService();
     
     @GetMapping("/moves")
-    public List<String> getMoves(@RequestParam String type,@RequestParam String position){
+    public List<String> getMoves(String type,String position){
         return chessService.getPossibleMoves(type, position);
     }
 
     @GetMapping("/board")
     public void displayBoard() {
-        Chessboard chessboard = new Chessboard();
-        chessboard.printChessBoard();
+        chessService.printChessBoard();
     }
 }

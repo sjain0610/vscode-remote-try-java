@@ -6,14 +6,25 @@ public class Queen extends ChessPiece{
     }
 
     @Override
-    public boolean canMove(String newPosition){
-        char column = position.charAt(0);
-        int row = Character.getNumericValue(position.charAt(1));
+    public boolean canMove(String newPosition) {
+        return isSameColumn(newPosition) || isSameRow(newPosition) || isDiagonalMove(newPosition);
+    }
 
-        char newColumn = newPosition.charAt(0);
-        int newRow = Character.getNumericValue(position.charAt(1));
+    private boolean isSameColumn(String newPosition) {
+        return position.charAt(0) == newPosition.charAt(0); // Same column check
+    }
 
-        return (column==newColumn || row==newRow ||
-        Math.abs(row-newRow)== Math.abs(column-newColumn));    //Queen move any number of position in any direction
+    private boolean isSameRow(String newPosition) {
+        return position.charAt(1) == newPosition.charAt(1); // Same row check
+    }
+
+    private boolean isDiagonalMove(String newPosition) {
+        int row = position.charAt(0) - 'A';
+        int column = Character.getNumericValue(position.charAt(1));
+        
+        int newRow = newPosition.charAt(0) - 'A';
+        int newColumn = Character.getNumericValue(newPosition.charAt(1));
+        
+        return Math.abs(row - newRow) == Math.abs(column - newColumn); // Diagonal move check
     }
 }

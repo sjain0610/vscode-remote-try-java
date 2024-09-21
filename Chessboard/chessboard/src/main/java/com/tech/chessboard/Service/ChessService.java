@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class ChessService{
     public List<String> getPossibleMoves(String type, String position){
+        
         ChessPiece piece;
         switch(type.toLowerCase()){
             case "pawn":
@@ -27,15 +28,29 @@ public class ChessService{
                 return new ArrayList<>();
         }
         List<String> possibleMoves=new ArrayList<>();
+        boolean hasValidMove = false; // Flag to check if any valid move exists
 
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
-                String newPosition = String.valueOf((char) ('A' + i)) + (j + 1);
+        for (char col = 'A'; col <= 'H'; col++) { 
+            for (int row = 1; row <= 8; row++) {
+                String newPosition = col + "" + row;
                 if (piece.canMove(newPosition)) {
                     possibleMoves.add(newPosition);
+                    hasValidMove=true;
                 }
             }
         }
+        if (!hasValidMove) {
+            possibleMoves.add("Invalid move.");
+        }
         return possibleMoves;
+    }
+
+    public void printChessBoard() {
+        for (int row = 8; row >= 1; row--) {
+            for (char column = 'A'; column <= 'H'; column++) {
+                System.out.print(column + "" + row + " ");
+            }
+            System.out.println();
+        }
     } 
 }
