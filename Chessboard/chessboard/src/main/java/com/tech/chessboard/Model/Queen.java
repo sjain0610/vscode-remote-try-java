@@ -19,11 +19,11 @@ public class Queen extends ChessPiece{
     }
 
     private boolean isDiagonalMove(String newPosition) {
-        int row = position.charAt(0) - 'A';
-        int column = Character.getNumericValue(position.charAt(1));
+        int col = position.charAt(0) - 'A';
+        int row = Character.getNumericValue(position.charAt(1));
         
-        int newRow = newPosition.charAt(0) - 'A';
-        int newColumn = Character.getNumericValue(newPosition.charAt(1));
+        int newColumn = newPosition.charAt(0) - 'A';
+        int newRow = Character.getNumericValue(newPosition.charAt(1));
         
         return Math.abs(row - newRow) == Math.abs(column - newColumn); // Diagonal move check
     }
